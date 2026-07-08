@@ -1,0 +1,13 @@
+# Data (downloaded via src/download_data.py; too large for GitHub)
+data/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+Thumbs.db
