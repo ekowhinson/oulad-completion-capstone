@@ -67,14 +67,17 @@ every stage:
    cross-validation, champion chosen on validation AUC.
 10. **Model evaluation** — champion refit on train + validation and scored once on test: AUC with
     bootstrap CI (the RQ4 hypothesis test), accuracy/precision/recall/F1, ROC curves, confusion
-    matrices, McNemar paired tests; the two prediction stages; a live-eligible day-13 evaluation
-    that excludes registrations not yet on file or already withdrawn by day 13.
+    matrices, McNemar paired tests; the two prediction stages; a retrospective day-13-eligible
+    evaluation that excludes registrations not yet on file or already withdrawn by day 13.
 11. **Important-feature selection** — permutation importance + SHAP, and a top-10-features
     refit (features ranked on the validation partition) demonstrating a lean early-warning variant.
 12. **Recommended model** — the champion, with the case for it and a deployment note.
 13. **Final-stage analyses** — hyperparameter tuning, probability calibration, workload-capped
     operating threshold, subgroup fairness audit, early-window sensitivity, student-grouped split,
-    and an unseen-presentation holdout.
+    an unseen-presentation holdout, an operational checkpoint snapshot (only submissions received
+    by the deadline plus one week, registrations still active then), the day-13 and snapshot lists
+    scored on the most recent presentation after training on earlier ones, and student-clustered
+    (cluster-robust) re-tests of RQ1–RQ3.
 14. **Final conclusions and recommendations** — verdicts per research question, five
     operational recommendations for providers, limitations, and future work.
 
