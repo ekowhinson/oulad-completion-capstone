@@ -19,7 +19,7 @@ Sources:
 1. Is VLE engagement associated with successful completion?
 2. Is early academic performance (passing the first assessment, score >= 40) associated with completion?
 3. Are demographic and socioeconomic characteristics (IMD band, prior education) associated with completion?
-4. Can a machine-learning model (logistic regression, random forest, XGBoost) predict completion significantly better than a majority-class baseline, and which features matter most?
+4. Can a machine-learning model (eleven classifiers from seven families) predict completion significantly better than a majority-class baseline using only early information, and which features matter most?
 
 ## Getting started
 
@@ -53,26 +53,32 @@ every stage:
    outlier decisions, each justified in place.
 4. **Exploratory data analysis** — completion by module, engagement distributions,
    early-performance splits, the IMD gradient, correlations.
-5. **Sample-size verification** — recomputes the synopsis minimums (786 / 320 / 1,068 / 530)
-   and confirms the data exceeds the binding 1,068 roughly thirtyfold.
+5. **Sample-size verification** — recomputes the synopsis minimums (786 / 320 / 1,068 / 530), adds
+   the chi-square power requirement for RQ3 (1,565) and the events-per-variable floor for the 38
+   encoded features (806), and confirms the data exceeds the binding 1,565 about 21-fold.
 6. **Statistical analysis** — RQ1 Welch t-test (+ Mann-Whitney, point-biserial, univariate
    logistic), RQ2 two-proportion z-test, RQ3 chi-square + Cramer's V with Wilson-CI subgroup
    precision estimates.
-7. **Feature engineering** — early-window (first two weeks) features only; whole-module
-   aggregates excluded as leakage; encoding decisions.
+7. **Feature engineering** — two feature sets: day 13 (activity logged through day 13 plus
+   enrolment facts, 35 encoded features) and the first-assessment checkpoint (adds the
+   assessment result, 38); whole-module aggregates excluded as leakage; encoding decisions.
 8. **Data splitting** — stratified 60/20/20 train/validation/test with balance checks.
-9. **Model building** — majority baseline, logistic regression, random forest, XGBoost, with
-   5-fold cross-validation.
-10. **Model evaluation** — champion selected on validation, scored once on test: AUC with
-    bootstrap CI (the RQ4 hypothesis test), accuracy/precision/recall/F1, ROC curves,
-    confusion matrix.
+9. **Model building** — majority baseline plus eleven classifiers from seven families, 5-fold
+   cross-validation, champion chosen on validation AUC.
+10. **Model evaluation** — champion refit on train + validation and scored once on test: AUC with
+    bootstrap CI (the RQ4 hypothesis test), accuracy/precision/recall/F1, ROC curves, confusion
+    matrices, McNemar paired tests; the two prediction stages; a live-eligible day-13 evaluation
+    that excludes registrations not yet on file or already withdrawn by day 13.
 11. **Important-feature selection** — permutation importance + SHAP, and a top-10-features
-    refit demonstrating a lean early-warning variant.
+    refit (features ranked on the validation partition) demonstrating a lean early-warning variant.
 12. **Recommended model** — the champion, with the case for it and a deployment note.
-13. **Final conclusions and recommendations** — verdicts per research question, five
+13. **Final-stage analyses** — hyperparameter tuning, probability calibration, workload-capped
+    operating threshold, subgroup fairness audit, early-window sensitivity, student-grouped split,
+    and an unseen-presentation holdout.
+14. **Final conclusions and recommendations** — verdicts per research question, five
     operational recommendations for providers, limitations, and future work.
 
 ## Status
 
-Analysis stage: the synopsis-planned analyses are implemented and executed in the notebook
-above. Next: the interim analysis report write-up.
+Final report and presentation completed (September 2026). The notebook was last re-executed end
+to end on 2026-09-12; every figure quoted in the report comes from that run.
