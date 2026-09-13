@@ -62,7 +62,8 @@ every stage:
 7. **Feature engineering** — two feature sets: day 13 (activity logged through day 13 plus
    enrolment facts, 35 encoded features) and the first-assessment checkpoint (adds the
    assessment result, 38); whole-module aggregates excluded as leakage; encoding decisions.
-8. **Data splitting** — stratified 60/20/20 train/validation/test with balance checks.
+8. **Data splitting** — stratified 60/20/20 train/validation/test with balance checks; the one
+   learned preprocessing value (the registration-date median) is taken from the training partition.
 9. **Model building** — majority baseline plus eleven classifiers from seven families, 5-fold
    cross-validation, champion chosen on validation AUC.
 10. **Model evaluation** — champion refit on train + validation and scored once on test: AUC with
