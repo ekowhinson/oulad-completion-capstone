@@ -75,7 +75,8 @@ every stage:
 13. **Final-stage analyses** — hyperparameter tuning, probability calibration, workload-capped
     operating threshold, subgroup fairness audit, early-window sensitivity, student-grouped split,
     an unseen-presentation holdout, an operational checkpoint snapshot (only submissions received
-    by the deadline plus one week, registrations still active then), the day-13 and snapshot lists
+    by the deadline plus one week, registrations still active then) plus a submission-only variant that
+    needs no marks, the day-13 and snapshot lists
     scored on the most recent presentation after training on earlier ones, and student-clustered
     (cluster-robust) re-tests of RQ1–RQ3.
 14. **Final conclusions and recommendations** — verdicts per research question, five
@@ -84,4 +85,4 @@ every stage:
 ## Status
 
 Final report and presentation completed (September 2026). The notebook was last re-executed end
-to end on 2026-09-12; every figure quoted in the report comes from that run.
+to end on 2026-09-13; every figure quoted in the report comes from that run.
